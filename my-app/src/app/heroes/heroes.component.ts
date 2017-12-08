@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Hero } from '../Models/hero.model';
 import { HEROES } from '../Models/mocks.heroes';
+import { HeroService } from '../hero.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-heroes',
@@ -10,9 +12,8 @@ import { HEROES } from '../Models/mocks.heroes';
 export class HeroesComponent implements OnInit {
   selectedHero: Hero;
   
-  heroes = HEROES;
-  constructor() { 
-    
+  heroes : Hero[];
+  constructor(private _heroService: HeroService) { 
   }
 
   selectHero(hero : Hero) : void {
@@ -20,6 +21,8 @@ export class HeroesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._heroService.getHeroes()
+      .subscribe(heroes => this.heroes = heroes );    
   }
 
 }
