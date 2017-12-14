@@ -10,14 +10,9 @@ import { Observable } from 'rxjs/Observable';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  selectedHero: Hero;
   
   heroes : Hero[];
   constructor(private _heroService: HeroService) { 
-  }
-
-  selectHero(hero : Hero) : void {
-    this.selectedHero = hero;
   }
 
   ngOnInit() {
